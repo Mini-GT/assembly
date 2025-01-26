@@ -3,40 +3,55 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  font-family: "Hanken Grotesk", serif;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.Lang_Container {
+  display: flex;
+  gap: 3px;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.lang_item {
+  font-weight: bold;
+  padding: 5px;
+  border-radius: 5px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.html { 
+  background-color: #E2680F;
 }
 
-.card {
-  padding: 2em;
+.css { 
+  background-color: #328AF1; 
 }
 
-.read-the-docs {
-  color: #888;
+.javascript { 
+  background-color: #F4EB13; 
+  color: #1E1E1E;
+}
+
+.react { 
+  background-color: #2ED3E9; 
+  color: #1E1E1E;
+}
+
+.typescript { 
+  background-color: #298EC6; 
+}
+
+.nodejs { 
+  background-color: #599135; 
+}
+
+.python { 
+  background-color: #FFD742; 
+  color: #1E1E1E;
+}
+
+.ruby { 
+  background-color: #D02B2B; 
+}
+
+.assembly { 
+  background-color: #2D519F; 
 }
