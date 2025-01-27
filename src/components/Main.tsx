@@ -1,4 +1,4 @@
-import Guesses from "./EmptyWord";
+import Guesses from "./Guesses";
 import Header from "./Header";
 import Keypad from "./Keypad";
 
