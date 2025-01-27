@@ -1,5 +1,5 @@
 import { nanoid } from "nanoid";
-import Alphabet from "./Alphabet";
+import BoxItem from "./BoxItem";
 
 const alphabet = [
   "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", 
@@ -10,7 +10,7 @@ const alphabet = [
 export default function Keypad() {
   const letterButton = alphabet.map(letter => {
     return (
-      <Alphabet key={nanoid()} letter={letter} />
+      <BoxItem key={nanoid()} letter={letter} />
     )
   }) 
 
