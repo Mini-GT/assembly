@@ -1,23 +1,82 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-  font-family: "Hanken Grotesk", serif;
+.Lang_Container, .Keypad_Container {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 390px;
+  justify-content: center;
+  gap: 3px;
 }
 
-.Lang_Container {
+.Keypad_Container{
+  max-width: 350px;
+}
+
+.EmptyBox_Container {
+  margin: 1rem;
   display: flex;
   gap: 3px;
 }
 
-.lang_item {
+.EmptyBox_Container > .Box_Item {
+  position: relative;
+  color: #F9F4DA;
+  background-color: #323232;
+}
+
+.EmptyBox_Container > .Box_Item::after {
+  position: absolute;
+  content: "";
+  width: 100%;
+  bottom: 0;
+  border-bottom: 1px solid #F9F4DA;
+}
+
+.lang_item, .Keypad_Container > .Box_Item, .EmptyBox_Container > .Box_Item {
   font-weight: bold;
   padding: 5px;
   border-radius: 5px;
 }
 
-.html { 
+.Keypad_Container > .Box_Item, .EmptyBox_Container > .Box_Item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 35px;
+  height: 35px;
+  border: none;
+  border-radius: 5px;
+}
+
+.Component_Container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.Header_Container > h1 {
+  color: #F9F4DA;
+}
+
+.Header_Container > p {
+  font-size: large;
+  color: #8E8E8E;
+}
+
+
+/* box styles */
+.Box_Item {
+  cursor: pointer;
+  color: #1E1E1E;
+  font-weight: bold;
+
+  background-color: #FCBA29;
+}
+
+.Box_Item:hover {
+  background-color: #ca9014;
+}
+
+.html {
   background-color: #E2680F;
 }
 
