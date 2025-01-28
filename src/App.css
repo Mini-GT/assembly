@@ -7,7 +7,8 @@
 }
 
 .Keypad_Container{
-  max-width: 350px;
+  gap: 8px;
+  max-width: 400px;
 }
 
 .EmptyBox_Container {
@@ -64,15 +65,14 @@
 
 
 /* box styles */
-.Box_Item {
+.Keypad_Container > .Box_Item {
   cursor: pointer;
   color: #1E1E1E;
   font-weight: bold;
-
   background-color: #FCBA29;
 }
 
-.Box_Item:hover {
+.Keypad_Container > .Box_Item:hover {
   background-color: #ca9014;
 }
 
@@ -113,4 +113,11 @@
 
 .assembly { 
   background-color: #2D519F; 
+}
+
+@media (max-width: 400px) {
+  .Keypad_Container{
+    gap: 5px;
+    max-width: 400px;
+  }
 }
