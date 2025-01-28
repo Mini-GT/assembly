@@ -1,5 +1,8 @@
 import { nanoid } from "nanoid";
-import BoxItem from "./BoxItem";
+import BoxItem, { BoxItemType } from "./BoxItem";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../ReduxStore/store";
+import { handleSelected } from "../ReduxStore/wordSlice";
 
 const alphabet = [
   "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", 
@@ -8,9 +11,16 @@ const alphabet = [
 ];
 
 export default function Keypad() {
+  const secretWord = useSelector((state: RootState) => state.secretWord.value)
+  const dispatch: AppDispatch = useDispatch();
+
+  function handleSelectedLetter(letter: BoxItemType['letter']) {
+    dispatch(handleSelected(letter))
+  }
+
   const letterButton = alphabet.map(letter => {
     return (
-      <BoxItem key={nanoid()} letter={letter} />
+      <BoxItem key={nanoid()} letter={letter} handleSelectedLetter={handleSelectedLetter} />
     )
   }) 
 
