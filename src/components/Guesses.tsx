@@ -1,10 +1,9 @@
-import {useState } from "react"
+import { useState } from "react"
 import Languages from "./Languages";
 import { programmingData } from "../languageData";
 import BoxItem from "./BoxItem";
 import { nanoid } from "nanoid";
-import { useSelector } from "react-redux";
-import { RootState } from "../ReduxStore/store";
+import { useRandomWord } from "../hooks/useGetRandomWord";
 
 export type ProgrammingLanguagesType = {
   id: string;
@@ -13,14 +12,9 @@ export type ProgrammingLanguagesType = {
 };
 
 function Guesses() {
-  const secretWord = useSelector((state: RootState) => state.secretWord.value)
-
-  const [languages, setLanguages] = useState<ProgrammingLanguagesType[]>(programmingData)
-
-  function getRandomWord() {
-    const randomWord = Math.ceil(Math.random())
-    console.log(randomWord)
-  }
+  const secretWord = useRandomWord();
+  
+  const [languages] = useState<ProgrammingLanguagesType[]>(programmingData)
   
   const langItems = languages.map(language => {
     return (
@@ -28,9 +22,9 @@ function Guesses() {
     )
   })
 
-  const emptyBox = secretWord.split("").map(letter => {
+  const secretWordEmptyBox = secretWord.map(obj => {
     return (
-      <BoxItem key={nanoid()} letter={letter.toUpperCase()} />
+      <BoxItem key={nanoid()} letter={obj.letter.toLocaleUpperCase()} isHidden={obj.isHidden} />
     )
   })
 
@@ -40,7 +34,7 @@ function Guesses() {
         {langItems}
       </div>
       <div className="EmptyBox_Container">
-        {emptyBox}
+        {secretWordEmptyBox}
       </div>
     </>
   )
