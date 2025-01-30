@@ -33,7 +33,7 @@
 
 .lang_item, .Keypad_Container > .Box_Item, .EmptyBox_Container > .Box_Item {
   font-weight: bold;
-  padding: 5px;
+  padding: 4px;
   border-radius: 5px;
 }
 
@@ -63,9 +63,9 @@
   color: #8E8E8E;
 }
 
-
 /* box styles */
 .Keypad_Container > .Box_Item {
+  border: 1px solid white;
   cursor: pointer;
   color: #1E1E1E;
   font-weight: bold;
@@ -75,6 +75,25 @@
 .Keypad_Container > .Box_Item:hover {
   background-color: #ca9014;
 }
+
+.Correct {
+  cursor: default;
+  background-color: #10A95B
+}
+
+.Correct:hover {
+  background-color: #10A95B
+}
+
+.Keypad_Container > .Wrong {
+  cursor: default;
+  background-color: #EC5D49
+}
+
+.Keypad_Container > .Wrong:hover {
+  background-color: #EC5D49
+}
+
 
 .html {
   background-color: #E2680F;
