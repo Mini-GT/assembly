@@ -24,7 +24,7 @@ function Guesses() {
 
   const secretWordEmptyBox = secretWord.map(obj => {
     return (
-      <BoxItem key={nanoid()} letter={obj.letter.toLocaleUpperCase()} isHidden={obj.isHidden} />
+      <BoxItem key={nanoid()} letter={obj.isHidden ? '' : obj.letter.toLocaleUpperCase()}/>
     )
   })
 
