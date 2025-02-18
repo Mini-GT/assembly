@@ -76,12 +76,12 @@
   background-color: #ca9014;
 }
 
-.Correct {
+.Keypad_Container > .Correct {
   cursor: default;
   background-color: #10A95B
 }
 
-.Correct:hover {
+.Keypad_Container > .Correct:hover {
   background-color: #10A95B
 }
 
