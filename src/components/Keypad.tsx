@@ -3,6 +3,9 @@ import BoxItem, { BoxItemType } from "./BoxItem";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../ReduxStore/store";
 import { handleSelected } from "../ReduxStore/wordSlice";
+import { useRandomWord } from "../hooks/useGetRandomWord";
+import { useState } from "react";
+import { AlphabetObjType } from "../types/alphabet.types";
 
 const alphabet = [
   "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", 
@@ -11,15 +14,52 @@ const alphabet = [
 ];
 
 export default function Keypad() {
+  const secretWord = useRandomWord();
   const dispatch: AppDispatch = useDispatch();
 
-  function handleSelectedLetter(letter: BoxItemType['letter']) {
+  // turn alphabet to Obj
+  const alphabetObj: AlphabetObjType[] = alphabet.map(letter => ({
+    letter: letter, 
+    isCorrect: false,
+    status: "default"
+  }))
+
+  // set alphabetObj into state
+  const [alphabetState, setAlphabetState] = useState(alphabetObj)
+  
+  function handleLetterClick(letter: BoxItemType['letter']) {
     dispatch(handleSelected(letter))
+
+    // update alphabet state
+    setAlphabetState(prevState => 
+      prevState.map(state => {
+        if (state.letter === letter) {
+          // Check if the letter exists in secretWord
+          const isMatch = secretWord.some(wordObj => 
+            wordObj.letter.toLowerCase() === letter.toLowerCase()
+          );
+          
+          return { 
+            ...state,
+            isCorrect: isMatch,
+            status: isMatch ? "correct" : "wrong"
+          };
+        }
+        return state;
+      })
+    );
   }
 
-  const letterButton = alphabet.map(letter => {
+  const letterButton = alphabetState.map(alphabet => {
+    
     return (
-      <BoxItem key={nanoid()} letter={letter} handleSelectedLetter={handleSelectedLetter} />
+      <BoxItem 
+        key={nanoid()} 
+        letter={alphabet.letter.toUpperCase()} 
+        handleSelectedLetter={handleLetterClick}
+        // setAlphabetState={setAlphabetState}
+        status={alphabet.status}
+      />
     )
   }) 
 

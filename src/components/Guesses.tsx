@@ -11,9 +11,8 @@ export type ProgrammingLanguagesType = {
   isStrikethrough: boolean
 };
 
-function Guesses() {
+export default function Guesses() {
   const secretWord = useRandomWord();
-  
   const [languages] = useState<ProgrammingLanguagesType[]>(programmingData)
   
   const langItems = languages.map(language => {
@@ -23,8 +22,12 @@ function Guesses() {
   })
 
   const secretWordEmptyBox = secretWord.map(obj => {
+
     return (
-      <BoxItem key={nanoid()} letter={obj.isHidden ? '' : obj.letter.toLocaleUpperCase()}/>
+      <BoxItem 
+        key={nanoid()} 
+        letter={obj.isGuessed ? obj.letter.toLocaleUpperCase() : ''}
+      />
     )
   })
 
@@ -39,5 +42,3 @@ function Guesses() {
     </>
   )
 }
-
-export default Guesses;
