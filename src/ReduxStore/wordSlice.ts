@@ -6,13 +6,13 @@ const secretWord = getRandomWord(words)
 
 const secretWordObj = secretWord.split("").map(letter => ({
   letter: letter, 
-  isHidden: true
+  isGuessed: false
 }))
 
-type SecretWordState = {
+export type SecretWordState = {
   value: Array<{
     letter: string,
-    isHidden: boolean
+    isGuessed: boolean
   }>
 }
 
@@ -24,10 +24,10 @@ const secretWordSlice = createSlice({
   name: "secretWord",
   initialState,
   reducers: {
-    handleSelected: (state, action: PayloadAction<string>) => {
+    handleSelected: (state: SecretWordState, action: PayloadAction<string>) => {
       state.value = state.value.map(obj => {
         if(obj.letter.toLocaleLowerCase() === action.payload.toLocaleLowerCase()) {
-          return {...obj, isHidden: !obj.isHidden}
+          return {...obj, isGuessed: !obj.isGuessed}
         }
         return obj
       })
