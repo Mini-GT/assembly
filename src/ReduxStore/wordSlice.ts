@@ -27,7 +27,7 @@ const secretWordSlice = createSlice({
     handleSelected: (state: SecretWordState, action: PayloadAction<string>) => {
       state.value = state.value.map(obj => {
         if(obj.letter.toLocaleLowerCase() === action.payload.toLocaleLowerCase()) {
-          return {...obj, isGuessed: !obj.isGuessed}
+          return {...obj, isGuessed: true}
         }
         return obj
       })
