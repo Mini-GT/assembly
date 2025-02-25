@@ -1,8 +1,8 @@
 import { nanoid } from "nanoid";
 import BoxItem, { BoxItemType } from "./BoxItem";
 import { useDispatch } from "react-redux";
-import { AppDispatch } from "../ReduxStore/store";
-import { handleSelected } from "../ReduxStore/wordSlice";
+import { AppDispatch } from "../Redux/store";
+import { handleSelected } from "../Redux/wordSlice";
 import { useRandomWord } from "../hooks/useGetRandomWord";
 import { useState } from "react";
 import { AlphabetObjType } from "../types/alphabet.types";
@@ -33,19 +33,25 @@ export default function Keypad() {
     // update alphabet state
     setAlphabetState(prevState => 
       prevState.map(state => {
+        
         if (state.letter === letter) {
           // Check if the letter exists in secretWord
           const isMatch = secretWord.some(wordObj => 
             wordObj.letter.toLowerCase() === letter.toLowerCase()
           );
           
+          if(!isMatch) {
+            console.log('wrong answer')
+          }
+
           return { 
             ...state,
             isCorrect: isMatch,
             status: isMatch ? "correct" : "wrong"
           };
         }
-        return state;
+
+        return state
       })
     );
   }
