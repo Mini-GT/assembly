@@ -1,23 +1,29 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
 import Languages from "./Languages";
-import { programmingData } from "../languageData";
+import { languageNames } from "../languageData";
 import BoxItem from "./BoxItem";
 import { nanoid } from "nanoid";
 import { useRandomWord } from "../hooks/useGetRandomWord";
+import { useLanguage } from "../context/LanguageContext";
 
 export type ProgrammingLanguagesType = {
   id: string;
   name: string
-  isStrikethrough: boolean
+  isWrong: boolean
 };
 
 export default function Guesses() {
   const secretWord = useRandomWord();
-  const [languages] = useState<ProgrammingLanguagesType[]>(programmingData)
-  
+  const { languages } = useLanguage()
+  // const [languages, setLanguages] = useState<ProgrammingLanguagesType[]>(languageNames)
+
   const langItems = languages.map(language => {
     return (
-      <Languages key={language.id} language={language} className={language.name} />
+      <Languages 
+        key={language.id} 
+        language={language} 
+        className={language.name}
+      />
     )
   })
 
