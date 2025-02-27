@@ -14,15 +14,15 @@ export type ProgrammingLanguagesType = {
 
 export default function Guesses() {
   const secretWord = useRandomWord();
+  console.log(secretWord)
   const { languages } = useLanguage()
-  // const [languages, setLanguages] = useState<ProgrammingLanguagesType[]>(languageNames)
-
+  
   const langItems = languages.map(language => {
     return (
       <Languages 
         key={language.id} 
-        language={language} 
-        className={language.name}
+        languageName={language.name}
+        isWrong={language.isWrong}
       />
     )
   })
