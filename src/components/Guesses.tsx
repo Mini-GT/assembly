@@ -14,7 +14,6 @@ export type ProgrammingLanguagesType = {
 
 export default function Guesses() {
   const secretWord = useRandomWord();
-  console.log(secretWord)
   const { languages } = useLanguage()
   
   const langItems = languages.map(language => {
