@@ -8,6 +8,12 @@ import { useState } from "react";
 import { AlphabetObjType } from "../types/alphabet.types";
 import { useLanguage } from "../context/LanguageContext";
 import { getFarewellText } from "../utils/farewellText";
+import { useFarewellText } from "../context/FarewellContext";
+
+type KeypadProps = {
+  isWon: boolean
+  isLost: boolean
+}
 
 const alphabet = [
   "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", 
@@ -15,11 +21,17 @@ const alphabet = [
   "U", "V", "W", "X", "Y", "Z"
 ];
 
-export default function Keypad() {
+const clickedLetters: string[] = []
+
+export default function Keypad({
+  isWon,
+  isLost
+}: KeypadProps) {
   const secretWord = useRandomWord();
   const dispatch: AppDispatch = useDispatch();
   const { languages, setLanguages } = useLanguage()
   const [wrongGuessIndex, setWrongGuessIndex] = useState(0);
+  const { setFarewellText } = useFarewellText()
 
   // turn alphabet to Obj
   const alphabetObj: AlphabetObjType[] = alphabet.map(letter => ({
@@ -30,20 +42,27 @@ export default function Keypad() {
 
   // set alphabetObj into state
   const [alphabetState, setAlphabetState] = useState(alphabetObj)
-  
   function handleLetterClick(letter: BoxItemType['letter']) {
+
+    // make the button unclickable if letter is already clicked or the game is done
+    const result = clickedLetters.some(clickedLetter => clickedLetter === letter)
+    if(result || isWon || isLost) return;
+
+    // send to redux
     dispatch(handleSelected(letter))
 
     // check if the letter exists in secretWord
     const isMatch = secretWord.some(wordObj => 
       wordObj.letter.toLowerCase() === letter.toLowerCase()
     );
-
     
     // update alphabet state
     setAlphabetState(prevState => 
       prevState.map(state => {
         if(state.letter === letter) {
+          // store the click letters
+          clickedLetters.push(letter)
+
           return { 
             ...state,
             isCorrect: isMatch,
@@ -61,6 +80,7 @@ export default function Keypad() {
         return prevLanguages.map((language, index) => {
           if (index === wrongGuessIndex) {
             const farewellText = getFarewellText(language.name)
+            setFarewellText(farewellText)
             return { ...language, isWrong: true };
           }
           return language;
