@@ -1,6 +1,4 @@
-import { useContext, useState } from "react"
 import Languages from "./Languages";
-import { languageNames } from "../languageData";
 import BoxItem from "./BoxItem";
 import { nanoid } from "nanoid";
 import { useRandomWord } from "../hooks/useGetRandomWord";
