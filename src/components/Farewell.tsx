@@ -1,5 +1,5 @@
 type FarewellType = {
-  farewellText: string
+  farewellText?: string
 }
 
 export default function Farewell({
@@ -7,8 +7,8 @@ export default function Farewell({
 }: FarewellType) {
   return (
     <>
-      <div className="Result_Container Farewell">
-        <h1>{farewellText}</h1>
+      <div className={`Result_Container Farewell ${farewellText ? '' : 'visible'}`}>
+        <p className="text-xl">{farewellText}</p>
       </div>
     </>
   )

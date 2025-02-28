@@ -6,15 +6,22 @@ import Keypad from "./Keypad";
 import Win from "./Win";
 import Lose from "./Lose";
 import NewGame from "./NewGame";
+import Farewell from "./Farewell";
+import { useFarewellText } from "../context/FarewellContext";
 
 export default function Main() {
   const secretWord = useRandomWord();
   const { languages } = useLanguage()
   const isWon = secretWord.every(word => word.isGuessed)
   const isLost = languages.every(language => language.isWrong)
-  
+  const {farewellText} = useFarewellText()
+
   function RenderResult() {
-    if (isWon) {
+    if(!farewellText && !isLost && !isWon) {
+      return <Farewell />
+    } else if(farewellText && !isLost && !isWon) {
+      return <Farewell farewellText={farewellText}/>
+    } else if (isWon) {
       return <Win />;
     } else if (isLost) {
       return <Lose />;
@@ -26,7 +33,7 @@ export default function Main() {
       <Header />
       <RenderResult /> 
       <Guesses />
-      <Keypad />
+      <Keypad isWon={isWon} isLost={isLost} />
       <NewGame />
     </div>
   )

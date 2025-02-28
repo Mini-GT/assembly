@@ -1,14 +1,15 @@
-import { ProgrammingLanguagesType } from "./Guesses"
-
 type LanguagesType = {
-  language: ProgrammingLanguagesType
-  className: string
+  languageName: string
+  isWrong: boolean
 }
 
-export default function Languages({language} : LanguagesType) {
+export default function Languages({
+  languageName,
+  isWrong
+} : LanguagesType) {
   return (
-    <div className={`${language.name.toLowerCase()} ${language.isStrikethrough && 'line-through'} lang_item`}>
-      {language.name}
+    <div className={`${languageName.toLowerCase()} ${isWrong ? 'faded' : null} lang_item`}>
+      <span>{languageName}</span>
     </div>
   )
 }
