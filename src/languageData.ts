@@ -1,50 +1,50 @@
 import { nanoid } from "nanoid";
 import { ProgrammingLanguagesType } from "./components/Guesses";
 
-export const programmingData: ProgrammingLanguagesType[] = [
+export const languageNames: ProgrammingLanguagesType[] = [
   {
     id: nanoid(),
     name: "Html",
-    isStrikethrough: false
+    isWrong: false
   },
   {
     id: nanoid(),
     name: "CSS",
-    isStrikethrough: false
+    isWrong: false
   },
   {
     id: nanoid(),
     name: "JavaScript",
-    isStrikethrough: false
+    isWrong: false
   },
   {
     id: nanoid(),
     name: "React",
-    isStrikethrough: false
+    isWrong: false
   },
   {
     id: nanoid(),
     name: "Typescript",
-    isStrikethrough: false
+    isWrong: false
   },
   {
     id: nanoid(),
     name: "NodeJS",
-    isStrikethrough: false
+    isWrong: false
   },
   {
     id: nanoid(),
     name: "Python",
-    isStrikethrough: false
+    isWrong: false
   },
   {
     id: nanoid(),
     name: "Ruby",
-    isStrikethrough: false
+    isWrong: false
   },
   {
     id: nanoid(),
     name: "Assembly",
-    isStrikethrough: false
+    isWrong: false
   },
 ];
