@@ -1,11 +1,12 @@
-import { getRandomWord } from "../utils/getRandomWords";
-import { words } from "../words";
-
 export default function NewGame() {
+  const handleRefresh = () => {
+    window.location.reload();
+  };
+
   return (
     <>
       <div className="NewGame_Container">
-        <button onClick={()=> getRandomWord(words)}>New Game</button>
+        <button onClick={handleRefresh}>New Game</button>
       </div>
     </>
   )
