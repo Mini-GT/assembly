@@ -1,1 +1,1 @@
-Bored? play a game => https://mini-gt.github.io/assembly/
+Bored? play a game
